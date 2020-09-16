@@ -24,10 +24,14 @@ class Select extends Component {
     //   menu = <div>Menu fermé</div>
     // }
 
-    const { items = [], selected = '' } = this.props;
+    const { items = [], selected = "", onSelected = () => {} } = this.props;
     const { opened = false } = this.state;
 
-    const menuItems = items.map((item) => <div className="item" key={item}>{item}</div>);
+    const menuItems = items.map((item) => (
+      <div className="item" onClick={() => onSelected(item)} key={item}>
+        {item}
+      </div>
+    ));
 
     return (
       <div className="Select" onClick={this.toggleOpened}>
@@ -42,11 +46,7 @@ class Select extends Component {
         ) : (
           <div>Menu Fermé</div>
         )} */}
-        {opened && (
-          <div className="menu">
-            {menuItems}
-          </div>
-        )}
+        {opened && <div className="menu">{menuItems}</div>}
       </div>
     );
   }
