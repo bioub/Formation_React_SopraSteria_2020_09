@@ -8,13 +8,34 @@ class Clock extends Component {
     };
   }
 
-  componentDidMount() {
-    setInterval(() => {
+  startClock() {
+    this._interval = setInterval(() => {
       // this.state.now = new Date();
+      // setState equivalent à Object.assign
       this.setState({
         now: new Date(),
       });
-    }, 1000);
+    }, this.props.delay);
+  }
+
+  stopClock() {
+    clearInterval(this._interval);
+  }
+
+  // lifecycle
+  componentDidMount() {
+    this.startClock();
+  }
+
+  componentDidUpdate(previousProps) {
+    if (this.props.delay !== previousProps.delay) {
+      this.stopClock();
+      this.startClock();
+    }
+  }
+
+  componentWillUnmount() {
+    this.stopClock();
   }
 
   render() {
