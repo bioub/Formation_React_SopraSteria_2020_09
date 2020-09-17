@@ -85,6 +85,10 @@ function App() {
     setNewTodo('');
   }
 
+  function handleDelete(todo) {
+    setTodos(todos.filter((t) => t.id !== todo.id));
+  }
+
   return (
     <div className="App">
       <TodoForm
@@ -92,7 +96,7 @@ function App() {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <TodoList items={todos} />
+      <TodoList items={todos} onDelete={handleDelete} />
     </div>
   );
 }

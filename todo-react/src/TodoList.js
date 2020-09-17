@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import TodoItem from "./TodoItem";
 
-function TodoList({ items = [] }) {
-  const todoItems = items.map((it) => <TodoItem key={it.id} item={it} />);
+function TodoList({ items = [], onDelete = () => {} }) {
+  const todoItems = items.map((it) => <TodoItem onDelete={(item) => onDelete(item)} key={it.id} item={it} />);
   return <div className="TodoList">{todoItems}</div>;
 }
 
