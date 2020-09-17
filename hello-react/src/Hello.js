@@ -17,7 +17,7 @@ function Hello({ name = '' }) {
   // );
 
   return (
-    <div className="Hello">
+    <div className="Hello selected">
       Hello {name} !
     </div>
   );

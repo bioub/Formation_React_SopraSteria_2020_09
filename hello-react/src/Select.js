@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import styles from './Select.module.scss';
+import classNames from 'classnames';
 
 class Select extends Component {
+  hostRef = React.createRef();
   state = {
     opened: false,
   };
@@ -9,6 +12,25 @@ class Select extends Component {
       opened: !this.state.opened,
     });
   };
+
+  _documentClickListener = (event) => {
+    const hostEl = this.hostRef.current;
+    
+    if (!hostEl.contains(event.target)) {
+      this.setState({
+        opened: false,
+      });
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this._documentClickListener);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this._documentClickListener);
+  }
+
   render() {
     // let menu;
 
@@ -28,14 +50,17 @@ class Select extends Component {
     const { opened = false } = this.state;
 
     const menuItems = items.map((item) => (
-      <div className="item" onClick={() => onSelected(item)} key={item}>
+      <div className={classNames(styles.item, {[styles.active]: selected === item})} onClick={() => onSelected(item)} key={item}>
         {item}
       </div>
+      // <div className={selected === item ? styles.item + ' ' + styles.active : styles.item} onClick={() => onSelected(item)} key={item}>
+      //   {item}
+      // </div>
     ));
 
     return (
-      <div className="Select" onClick={this.toggleOpened}>
-        <div className="selected">{selected}</div>
+      <div ref={this.hostRef} className={styles.host} onClick={this.toggleOpened}>
+        <div className={styles.selected}>{selected}</div>
         {/* {this.state.opened ? (
           <div className="menu">
             <div className="item">Rouge</div>
@@ -46,7 +71,7 @@ class Select extends Component {
         ) : (
           <div>Menu Fermé</div>
         )} */}
-        {opened && <div className="menu">{menuItems}</div>}
+        {opened && <div className={styles.menu}>{menuItems}</div>}
       </div>
     );
   }

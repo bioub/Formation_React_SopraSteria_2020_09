@@ -1,0 +1,35 @@
+$color: black;
+
+.host {
+  user-select: none;
+  cursor: pointer;
+}
+
+.selected {
+  border: 1px solid $color;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+
+  &::after {
+    margin-left: auto;
+    content: '\25BE';
+  }
+}
+
+.menu {
+  border: 1px solid $color;
+
+  .item {
+    padding: 5px;
+
+    &:hover {
+      background-color: beige;
+    }
+
+    &.active {
+      background-color: lightblue;
+    }
+  }
+}
+
