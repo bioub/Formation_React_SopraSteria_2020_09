@@ -2,7 +2,7 @@ import React from "react";
 
 function Hello({ name = '' }) {
   return (
-    <div className="Hello selected">
+    <div className="Hello">
       Hello {name} !
     </div>
   );
