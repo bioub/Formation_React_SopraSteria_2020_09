@@ -1,6 +1,7 @@
 import React from "react";
 
 function TodoItem({ item = {} }) {
+  console.log('render TodoItem');
   return (
     <div className="TodoItem">
       <input type="checkbox" defaultChecked={item.completed} />
