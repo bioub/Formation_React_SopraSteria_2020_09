@@ -11,3 +11,13 @@ export function decrementCount(payload = 1) {
 export function changeName(payload) {
   return { type: CHANGE_NAME, payload };
 }
+
+// function createAction(type) {
+//   return function(payload) {
+//     return {
+//       type, payload,
+//     }
+//   }
+// }
+
+// export const changeName = createAction(CHANGE_NAME);
