@@ -4,13 +4,14 @@ const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 const CHANGE_NAME = "CHANGE_NAME";
 
+const initialState = { count: 0, name: "Romain" };
 /*
 fonction pure :
 - prédictive, appelée avec des params identique elle a le même retour
 - ne modifie pas ses params (state immuable)
 - pas de side-effect (pas de console.log, de requete HTTP)
 */
-function rootReducer(state, action) {
+function rootReducer(state = initialState, action) {
   switch (action.type) {
     case INCREMENT:
     case DECREMENT:
@@ -28,7 +29,7 @@ function rootReducer(state, action) {
   }
 }
 
-function countReducer(state, { type, payload }) {
+function countReducer(state = initialState.count, { type, payload }) {
   switch (type) {
     case INCREMENT:
       return state + payload;
@@ -39,7 +40,7 @@ function countReducer(state, { type, payload }) {
   }
 }
 
-function nameReducer(state, { type, payload }) {
+function nameReducer(state = initialState.name, { type, payload }) {
   switch (type) {
     case CHANGE_NAME:
       return payload;
@@ -49,7 +50,7 @@ function nameReducer(state, { type, payload }) {
 }
 
 /** @type {import('redux').Store} */
-const store = createStore(rootReducer, { count: 0, name: "Romain" });
+const store = createStore(rootReducer);
 
 console.log("initial state", store.getState());
 

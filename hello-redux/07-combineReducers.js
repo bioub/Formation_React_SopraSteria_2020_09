@@ -4,12 +4,14 @@ const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 const CHANGE_NAME = "CHANGE_NAME";
 
+const initialState = { count: 0, name: "Romain" };
+
 const rootReducer = combineReducers({
   count: countReducer,
   name: nameReducer,
 });
 
-function countReducer(state = 0, { type, payload }) {
+function countReducer(state = initialState.count, { type, payload }) {
   switch (type) {
     case INCREMENT:
       return state + payload;
@@ -20,7 +22,7 @@ function countReducer(state = 0, { type, payload }) {
   }
 }
 
-function nameReducer(state = 'Romain', { type, payload }) {
+function nameReducer(state = initialState.name, { type, payload }) {
   switch (type) {
     case CHANGE_NAME:
       return payload;

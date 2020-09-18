@@ -4,13 +4,14 @@ const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
 const CHANGE_NAME = "CHANGE_NAME";
 
+const initialState = { count: 0, name: "Romain" };
 /*
 fonction pure :
 - prédictive, appelée avec des params identique elle a le même retour
 - ne modifie pas ses params (state immuable)
 - pas de side-effect (pas de console.log, de requete HTTP)
 */
-function reducer(state = { count: 0, name: "Romain" }, {type, payload}) {
+function reducer(state = initialState, {type, payload}) {
   switch (type) {
     case INCREMENT:
       return {
