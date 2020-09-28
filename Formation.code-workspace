@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "hello-react"
+		},
+		{
+			"path": "langage"
+		},
+		{
+			"path": "todo-react"
+		},
+		{
+			"path": "hello-redux"
+		},
+		{
+			"path": "hello-react-redux"
+		},
+		{
+			"path": "todo-redux"
+		},
+		{
+			"path": "single-page-application"
+		}
+	],
+	"settings": {}
+}
